@@ -198,7 +198,7 @@ int main()
             // Save results only for the first run for visualization
             if (numPoints == 10000 && k == 5)
             {
-                saveResults(data, labelsSerial, "serial_clusters.csv");
+                saveResults(data, labelsSerial, "src/serial_clusters.csv");
             }
 
             cout << "Running parallel K-means with k = " << k << "..." << endl;
@@ -211,7 +211,7 @@ int main()
             // Save results only for the first run for visualization
             if (numPoints == 10000 && k == 5)
             {
-                saveResults(data, labelsParallel, "parallel_clusters.csv");
+                saveResults(data, labelsParallel, "src/parallel_clusters.csv");
             }
 
             double speedup = serialTime / parallelTime;

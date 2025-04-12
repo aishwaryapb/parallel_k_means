@@ -1,26 +1,30 @@
-# Define directories
-SRC_DIR=src
-BIN_DIR=bin
+# Makefile for Parallel K-means Project
 
-# Define source file and output file
-SRC_FILE=$(SRC_DIR)/k_means.cpp
-BIN_FILE=$(BIN_DIR)/k_means
+# Directories
+SRC_DIR := src
+BIN_DIR := bin
 
-# Default target
-all: compile
+# Files
+SRC_FILE := $(SRC_DIR)/k_means.cpp
+BIN_FILE := $(BIN_DIR)/k_means
 
-# Compile target
-compile: $(BIN_FILE)
+# Compiler and Flags
+CXX := clang++
+CXXFLAGS := -O2 -g -fopencilk
 
-$(BIN_FILE): $(SRC_FILE)
-	clang++ -O2 -g -fopencilk -o $@ $<
+# Targets
+.PHONY: compile run clean
 
-# Run target
-run: $(BIN_FILE)
+compile:
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -o $(BIN_FILE) $(SRC_FILE)
+	@echo "Compilation complete. Binary created at $(BIN_FILE)"
 
-# Clean target
+run: compile
+	@$(BIN_FILE)
+
 clean:
-	rm -f $(BIN_FILE)
-	rm $(SRC_DIR)/*.csv
+	@rm -rf $(BIN_DIR)
+	@rm src/*.csv
+	@echo "Cleaned build artifacts."
 
-.PHONY: all compile run clean
