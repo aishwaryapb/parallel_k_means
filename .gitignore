@@ -1,3 +1,6 @@
 res/
 proposal/
 .vscode/
+src/data/*
+src/images/*
+!src/images/original.jpg
